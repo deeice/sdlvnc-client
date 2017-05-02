@@ -758,6 +758,7 @@ void PrintUsage()
 	/* Make sure to get server:display BEFORE SDL_Init(). */
 	if (vnc_server==NULL) {
 	  printf("Server:Display = ");
+          fflush(stdout);
 	  vnc_server = calloc(sizeof(char), 128);
 	  fgets(vnc_server, 128, stdin);
 	  strtok(vnc_server, "\r\n");
@@ -802,7 +803,7 @@ void PrintUsage()
 
 		/* Open vnc connection */
 		result =vncConnect(&vnc,vnc_server,vnc_port,vnc_method,vnc_password,vnc_framerate);
-		if (result = 0)
+		if (result == 0)
 		{
 		  printf("No connection to %s:%d\n",vnc_server,vnc_port);
 		  exit(1);
